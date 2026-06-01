@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doxa Hill Assembly</title>
+<meta name="description" content="Doxa Hill Assembly — Raising Kingdom Ambassadors. A Spirit-filled church in Accra, Ghana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --forest:#1e3d28;
+  --forest2:#2c5438;
+  --gold:#b8892a;
+  --gold2:#d4a843;
+  --ink:#18160f;
+  --ink2:#3a3528;
+  --muted:#78725e;
+  --border:#ddd8cc;
+  --paper:#f9f6ef;
+  --cream:#fdfbf6;
+  --white:#ffffff;
+  --serif:'EB Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+}
+body{font-family:var(--sans);color:var(--ink);background:var(--cream);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+/* NAV */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:0 3rem;height:72px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .3s,border-color .3s;
+  border-bottom:1px solid transparent;
+}
+#nav.scrolled{background:rgba(253,251,246,.97);backdrop-filter:blur(8px);border-bottom-color:var(--border)}
+.nav-logo img{height:38px;width:auto;transition:filter .3s}
+#nav:not(.scrolled) .nav-logo img{filter:brightness(0) invert(1)}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links a{
+  font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:400;
+  color:rgba(255,255,255,.75);transition:color .2s;
+}
+#nav.scrolled .nav-links a{color:var(--muted)}
+.nav-links a:hover{color:var(--gold2)}
+#nav.scrolled .nav-links a:hover{color:var(--forest)}
+.nav-cta{
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;
+  background:var(--gold2);color:var(--forest)!important;
+  padding:.55rem 1.3rem;border-radius:1px;transition:background .2s;
+}
+.nav-cta:hover{background:var(--gold)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:#fff;transition:background .3s}
+#nav.scrolled .hamburger span{background:var(--ink)}
+
+/* DRAWER */
+.drawer{
+  position:fixed;inset:0;background:var(--forest);z-index:500;
+  display:flex;flex-direction:column;justify-content:center;padding:4rem 3rem;
+  transform:translateX(100%);transition:transform .45s cubic-bezier(.77,0,.18,1);
+}
+.drawer.open{transform:translateX(0)}
+.drawer a{font-family:var(--serif);font-size:2.8rem;font-style:italic;color:var(--cream);display:block;padding:.15rem 0;transition:color .2s}
+.drawer a:hover{color:var(--gold2)}
+.drawer-x{position:absolute;top:2rem;right:2.5rem;background:none;border:none;color:rgba(255,255,255,.4);cursor:pointer;font-size:1.8rem}
+
+/* HERO */
+#hero{
+  min-height:100vh;position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.hero-l{
+  background:var(--forest);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:8rem 4rem 5rem;position:relative;z-index:2;
+}
+.hero-l::after{
+  content:'';position:absolute;right:-1px;top:0;bottom:0;width:80px;
+  background:linear-gradient(to right,var(--forest),transparent);
+  z-index:3;
+}
+.hero-mountain{
+  position:absolute;inset:0;z-index:1;
+  display:flex;align-items:flex-end;
+}
+.hero-mountain svg{width:100%;opacity:.08}
+.hero-eyebrow{
+  font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold2);display:flex;align-items:center;gap:12px;
+  margin-bottom:1.5rem;position:relative;z-index:4;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold2);display:block}
+.hero-h1{
+  font-family:var(--serif);
+  font-size:clamp(3.2rem,5.5vw,5.2rem);
+  font-weight:400;line-height:1.05;
+  color:var(--cream);margin-bottom:1.5rem;
+  position:relative;z-index:4;
+}
+.hero-h1 span{display:block;font-style:italic;color:var(--gold2);font-size:.9em}
+.hero-sub{
+  font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);font-weight:300;margin-bottom:2.5rem;
+  position:relative;z-index:4;
+}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;position:relative;z-index:4}
+.btn-g{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;background:var(--gold2);color:var(--forest);padding:.75rem 1.8rem;border-radius:1px;border:none;cursor:pointer;transition:background .2s}
+.btn-g:hover{background:var(--gold)}
+.btn-o{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:400;background:transparent;color:rgba(255,255,255,.65);padding:.75rem 1.8rem;border-radius:1px;border:1px solid rgba(255,255,255,.2);cursor:pointer;transition:all .2s}
+.btn-o:hover{border-color:var(--gold2);color:var(--gold2)}
+
+.hero-r{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#162e1c 0%,#1e3d28 60%,#122219 100%);
+}
+.hero-r-verse{
+  position:absolute;left:3rem;right:3rem;bottom:5rem;
+  border-left:1px solid var(--gold2);padding-left:1.5rem;
+}
+.hero-r-verse p{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.55;margin-bottom:.4rem}
+.hero-r-verse cite{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);font-style:normal}
+.hero-r-mountain{position:absolute;bottom:0;left:0;right:0;opacity:.25}
+.hero-r-logo{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);opacity:.06;width:280px}
+
+/* UPCOMING TICKER */
+.ticker{background:var(--ink);display:flex;align-items:stretch;overflow-x:auto}
+.ticker::-webkit-scrollbar{display:none}
+.ticker-label{
+  font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold2);
+  padding:1.1rem 2rem;border-right:1px solid rgba(255,255,255,.07);
+  white-space:nowrap;display:flex;align-items:center;flex-shrink:0;
+}
+.ticker-items{display:flex;flex:1}
+.ticker-item{
+  flex:1;min-width:200px;padding:1.1rem 1.75rem;
+  border-right:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:center;gap:1rem;cursor:pointer;
+  transition:background .2s;
+}
+.ticker-item:hover{background:rgba(255,255,255,.03)}
+.ti-day{font-family:var(--serif);font-size:1.7rem;color:var(--gold2);line-height:1;min-width:28px;text-align:center}
+.ti-name{font-size:.8rem;color:rgba(255,255,255,.75);margin-bottom:2px}
+.ti-time{font-size:.65rem;color:rgba(255,255,255,.3);letter-spacing:.04em}
+
+/* SECTIONS */
+.section{padding:6.5rem 3rem}
+.wrap{max-width:1280px;margin:0 auto}
+.label{
+  font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;
+}
+.label::before{content:'';width:24px;height:1px;background:var(--gold);display:block}
+.h2{font-family:var(--serif);font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:400;line-height:1.15;color:var(--ink)}
+.h2 em{font-style:italic;color:var(--forest)}
+.body-text{font-size:.95rem;color:var(--muted);line-height:1.8}
+.divider{height:1px;background:var(--border)}
+
+/* ABOUT */
+#about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:start}
+.about-copy p{color:var(--ink2);font-size:.95rem;line-height:1.8;margin-bottom:.9rem}
+.pillars{display:grid;grid-template-columns:1fr 1fr;margin-top:2.5rem;border:1px solid var(--border)}
+.pillar{padding:1.5rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.pillar:nth-child(2n){border-right:none}
+.pillar:nth-last-child(-n+2){border-bottom:none}
+.pillar-tag{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.4rem}
+.pillar-t{font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin-bottom:.3rem}
+.pillar-d{font-size:.82rem;color:var(--muted);line-height:1.6}
+.faith-box{background:var(--forest);padding:2.5rem;position:sticky;top:84px}
+.faith-box h3{font-family:var(--serif);font-size:1.3rem;font-style:italic;color:var(--cream);padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:1.25rem}
+.faith-list{list-style:none;display:flex;flex-direction:column;gap:.8rem}
+.faith-list li{font-size:.85rem;color:rgba(255,255,255,.62);display:flex;gap:.7rem;line-height:1.6}
+.faith-list li::before{content:'—';color:var(--gold2);flex-shrink:0}
+.stats-row{display:flex;gap:2.5rem;margin-top:2rem;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.08)}
+.stat-n{font-family:var(--serif);font-size:2.3rem;color:var(--gold2);line-height:1}
+.stat-l{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px}
+
+/* PASTORS */
+#pastors{background:var(--paper)}
+.pastors-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);margin-top:3rem}
+.pastor{padding:2.5rem;border-right:1px solid var(--border)}
+.pastor:last-child{border-right:none}
+.pastor-av{
+  width:76px;height:76px;border-radius:50%;background:var(--forest);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:1.5rem;font-style:italic;color:var(--gold2);
+  margin-bottom:1.25rem;
+}
+.pastor-n{font-family:var(--serif);font-size:1.25rem;color:var(--ink);margin-bottom:.2rem}
+.pastor-r{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem}
+.pastor-bio{font-size:.83rem;color:var(--muted);line-height:1.7}
+
+/* MINISTRIES */
+#ministries{background:var(--cream)}
+.min-head{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:3.5rem}
+.min-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border)}
+.min-card{
+  padding:2.5rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  transition:background .2s;cursor:default;
+}
+.min-card:nth-child(3n){border-right:none}
+.min-card:nth-last-child(-n+3){border-bottom:none}
+.min-card:hover{background:var(--paper)}
+.min-n{font-family:var(--serif);font-size:2.8rem;color:var(--border);line-height:1;margin-bottom:1.1rem;transition:color .2s}
+.min-card:hover .min-n{color:var(--gold2)}
+.min-t{font-family:var(--serif);font-size:1.2rem;color:var(--ink);margin-bottom:.5rem}
+.min-d{font-size:.82rem;color:var(--muted);line-height:1.7}
+
+/* SERMONS */
+#sermons{background:var(--white)}
+.sermons-head{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;padding-bottom:2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.live-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(184,137,42,.08);border:1px solid rgba(184,137,42,.3);padding:.5rem 1rem;font-size:.7rem;color:var(--gold);letter-spacing:.07em;cursor:pointer}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#c04040;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.s-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:2rem}
+.s-tab{
+  font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.2rem;
+  background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;
+  color:var(--muted);margin-bottom:-1px;transition:all .2s;
+}
+.s-tab:hover{color:var(--ink)}
+.s-tab.on{color:var(--ink);border-bottom-color:var(--ink)}
+.s-list{display:flex;flex-direction:column}
+.s-row{
+  display:grid;grid-template-columns:52px 1fr auto;gap:1.25rem;align-items:center;
+  padding:1.4rem 0;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;
+}
+.s-row:last-child{border-bottom:none}
+.s-row:hover{background:var(--paper);margin:0 -1rem;padding-left:1rem;padding-right:1rem}
+.s-play{
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;
+}
+.s-row:hover .s-play{background:var(--forest);border-color:var(--forest)}
+.s-play svg{width:14px;height:14px;fill:var(--muted);margin-left:2px;transition:fill .2s}
+.s-row:hover .s-play svg{fill:var(--cream)}
+.s-series{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.s-title{font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:2px}
+.s-meta{font-size:.72rem;color:var(--muted)}
+.s-dur{font-size:.72rem;color:var(--muted);white-space:nowrap}
+
+/* EVENTS */
+#events{background:var(--paper)}
+.ev-layout{display:grid;grid-template-columns:1fr 300px;gap:4rem;margin-top:3rem;align-items:start}
+.ev-list{display:flex;flex-direction:column}
+.ev-row{
+  display:grid;grid-template-columns:72px 1fr auto;gap:1.25rem;align-items:center;
+  padding:1.5rem 0;border-bottom:1px solid var(--border);
+}
+.ev-box{background:var(--forest);padding:.5rem .3rem;text-align:center;min-width:72px;border-radius:1px}
+.ev-day{font-family:var(--serif);font-size:1.7rem;color:var(--gold2);line-height:1}
+.ev-mo{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.ev-tag{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.ev-nm{font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin-bottom:2px}
+.ev-wh{font-size:.75rem;color:var(--muted)}
+.ev-btn{
+  font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;
+  padding:.45rem 1rem;border:1px solid var(--border);border-radius:1px;
+  background:none;cursor:pointer;color:var(--muted);white-space:nowrap;
+  transition:all .2s;text-decoration:none;
+}
+.ev-btn:hover{border-color:var(--forest);color:var(--forest)}
+.cal-widget{position:sticky;top:84px;background:var(--white);border:1px solid var(--border);padding:1.5rem}
+.cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.cal-mo{font-family:var(--serif);font-size:1.05rem;color:var(--ink)}
+.cal-arrows{display:flex;gap:4px}
+.cal-arrows button{width:28px;height:28px;border:1px solid var(--border);background:none;cursor:pointer;font-size:.75rem;color:var(--muted);border-radius:1px;transition:all .2s}
+.cal-arrows button:hover{border-color:var(--forest);color:var(--forest)}
+.cal-g{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;gap:2px}
+.cal-wd{font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:4px}
+.cal-d{font-size:.8rem;padding:5px;cursor:pointer;border-radius:1px;transition:background .15s;color:var(--ink)}
+.cal-d:hover{background:var(--border)}
+.cal-d.today{background:var(--forest);color:var(--cream);border-radius:50%}
+.cal-d.ev{font-weight:500;color:var(--forest);position:relative}
+.cal-d.ev::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:3px;height:3px;background:var(--gold);border-radius:50%}
+.cal-d.dim{color:var(--border)}
+
+/* GIVING */
+#giving{background:var(--forest)}
+.giving-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:3rem;align-items:start}
+.g-label{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold2);display:flex;align-items:center;gap:10px;margin-bottom:1.25rem}
+.g-label::before{content:'';width:24px;height:1px;background:var(--gold2);display:block}
+.g-h2{font-family:var(--serif);font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:400;line-height:1.15;color:var(--cream)}
+.g-h2 em{font-style:italic;color:var(--gold2)}
+.g-verse{
+  font-family:var(--serif);font-size:1.35rem;font-style:italic;
+  color:rgba(255,255,255,.75);line-height:1.55;
+  border-left:1px solid var(--gold2);padding-left:1.5rem;margin:2rem 0 .5rem;
+}
+.g-ref{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);padding-left:1.5rem;margin-left:1px}
+.g-p{font-size:.88rem;color:rgba(255,255,255,.4);line-height:1.8;margin-top:1.75rem}
+.methods{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(255,255,255,.1);margin-top:2rem}
+.method{
+  padding:1.1rem 1rem;background:none;border:none;cursor:pointer;
+  border-right:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);
+  text-align:left;color:inherit;transition:background .2s;
+}
+.method:nth-child(2n){border-right:none}
+.method:nth-last-child(-n+2){border-bottom:none}
+.method.on,.method:hover{background:rgba(255,255,255,.05)}
+.method-icon{font-size:.95rem;margin-bottom:.35rem}
+.method-nm{font-size:.78rem;font-weight:500;color:rgba(255,255,255,.75)}
+.method-hint{font-size:.65rem;color:rgba(255,255,255,.28);margin-top:2px}
+.g-form{background:var(--cream);padding:2.5rem}
+.g-form h3{font-family:var(--serif);font-size:1.35rem;color:var(--ink);margin-bottom:1.75rem}
+.lbl{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem;margin-top:.9rem}
+.lbl:first-of-type{margin-top:0}
+.inp,.sel{width:100%;padding:.68rem .9rem;border:1px solid var(--border);background:var(--white);font-family:var(--sans);font-size:.9rem;color:var(--ink);border-radius:1px;outline:none;transition:border-color .2s}
+.inp:focus,.sel:focus{border-color:var(--forest)}
+.amt-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:.5rem}
+.amt-btn{
+  padding:.6rem;border:1px solid var(--border);background:var(--white);
+  font-family:var(--sans);font-size:.85rem;border-radius:1px;cursor:pointer;transition:all .2s;color:var(--ink);
+}
+.amt-btn:hover,.amt-btn.on{background:var(--forest);border-color:var(--forest);color:var(--cream)}
+
+/* BLOG */
+#blog{background:var(--white)}
+.blog-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;border:1px solid var(--border);margin-top:3rem}
+.blog-feat{border-right:1px solid var(--border)}
+.blog-feat-img{
+  height:240px;background:var(--forest);position:relative;
+  display:flex;align-items:flex-end;padding:1.25rem;overflow:hidden;
+}
+.blog-feat-img svg{position:absolute;inset:0;width:100%;height:100%;opacity:.15}
+.blog-feat-img span{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);position:relative;z-index:1}
+.blog-feat-body{padding:1.75rem}
+.blog-tag{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.blog-t{font-family:var(--serif);font-size:1.2rem;color:var(--ink);line-height:1.3;margin-bottom:.55rem}
+.blog-exc{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:.9rem}
+.blog-by{font-size:.7rem;color:var(--muted);display:flex;align-items:center;gap:.4rem}
+.blog-by::before{content:'—';color:var(--border)}
+.blog-side-col{display:flex;flex-direction:column}
+.blog-si{
+  padding:1.4rem 1.5rem;border-bottom:1px solid var(--border);
+  cursor:pointer;transition:background .2s;flex:1;
+}
+.blog-si:last-child{border-bottom:none}
+.blog-si:hover{background:var(--paper)}
+.blog-si-t{font-family:var(--serif);font-size:1rem;color:var(--ink);line-height:1.3;margin-bottom:.25rem}
+.blog-si-m{font-size:.7rem;color:var(--muted)}
+
+/* GALLERY */
+#gallery{background:var(--paper)}
+.gal-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:1.25rem}
+.gal-tab{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.2rem;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;color:var(--muted);margin-bottom:-1px;transition:all .2s}
+.gal-tab:hover{color:var(--ink)}
+.gal-tab.on{color:var(--ink);border-bottom-color:var(--ink)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:4px}
+.gal-cell{
+  position:relative;overflow:hidden;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--forest);
+}
+.gal-cell.tall{grid-row:span 2}
+.gal-cell.wide{grid-column:span 2}
+.gal-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(20,42,28,.85),rgba(30,61,40,.7));
+  transition:opacity .3s;
+}
+.gal-cell:hover .gal-overlay{opacity:.45}
+.gal-lbl{
+  position:absolute;bottom:0;left:0;right:0;padding:.8rem 1rem;
+  font-size:.72rem;letter-spacing:.04em;color:rgba(255,255,255,.8);
+  background:linear-gradient(transparent,rgba(15,35,22,.7));
+  transform:translateY(6px);opacity:0;transition:all .3s;
+}
+.gal-cell:hover .gal-lbl{opacity:1;transform:translateY(0)}
+.gal-cell:nth-child(1){background:#192f20}
+.gal-cell:nth-child(2){background:#1d3824}
+.gal-cell:nth-child(3){background:#1a3222}
+.gal-cell:nth-child(4){background:#243c2c}
+.gal-cell:nth-child(5){background:#162a1d}
+.gal-cell:nth-child(6){background:#1f3a28}
+.gal-cell:nth-child(7){background:#1c3422}
+.gal-cell:nth-child(8){background:#213e2a}
+.gal-inner-logo{opacity:.07;width:60%;max-width:160px}
+
+/* TESTIMONIALS */
+#testimonials{background:var(--white)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);margin-top:3rem}
+.testi-item{padding:2.5rem;border-right:1px solid var(--border)}
+.testi-item:last-child{border-right:none}
+.testi-q{
+  font-family:var(--serif);font-size:1.02rem;font-style:italic;
+  color:var(--ink2);line-height:1.65;margin-bottom:1.5rem;
+}
+.testi-q::before{content:'\201C';color:var(--gold);font-size:1.8rem;line-height:0;vertical-align:-.35em;margin-right:2px;font-style:normal}
+.testi-av{width:34px;height:34px;border-radius:50%;background:var(--forest);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.82rem;color:var(--gold2);flex-shrink:0}
+.testi-nm{font-size:.83rem;font-weight:500;color:var(--ink)}
+.testi-rl{font-size:.68rem;color:var(--muted)}
+
+/* PRAYER + MEMBERSHIP */
+#connect{background:var(--paper)}
+.connect-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);margin-top:3rem}
+.connect-p{padding:3rem;border-right:1px solid var(--border)}
+.connect-p:last-child{border-right:none}
+.connect-p h3{font-family:var(--serif);font-size:1.45rem;color:var(--ink);margin-bottom:.35rem}
+.connect-p > p{font-size:.85rem;color:var(--muted);margin-bottom:1.75rem;line-height:1.7}
+.ta{width:100%;padding:.68rem .9rem;border:1px solid var(--border);background:var(--white);font-family:var(--sans);font-size:.9rem;color:var(--ink);border-radius:1px;outline:none;resize:vertical;min-height:90px;transition:border-color .2s}
+.ta:focus{border-color:var(--forest)}
+.chk-row{display:flex;align-items:center;gap:.6rem;margin-top:.75rem}
+.chk-row input{accent-color:var(--forest);width:14px;height:14px}
+.chk-row label{font-size:.8rem;color:var(--muted);cursor:pointer}
+
+/* CONTACT */
+#contact{background:var(--white)}
+.cont-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;margin-top:3rem;align-items:start}
+.cont-form{background:var(--paper);border:1px solid var(--border);padding:2.5rem}
+.cont-form h3{font-family:var(--serif);font-size:1.35rem;color:var(--ink);margin-bottom:1.75rem}
+.form-2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.ci-item{padding:1.25rem 0;border-bottom:1px solid var(--border)}
+.ci-item:first-child{padding-top:0}
+.ci-lbl{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
+.ci-val{font-size:.88rem;color:var(--ink2);line-height:1.6}
+.ci-val a{color:var(--forest)}
+.socials{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.75rem}
+.social-tag{
+  font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.45rem .9rem;border:1px solid var(--border);border-radius:1px;
+  color:var(--muted);transition:all .2s;text-decoration:none;
+}
+.social-tag:hover{border-color:var(--forest);color:var(--forest)}
+.map-ph{height:170px;background:var(--paper);border:1px solid var(--border);border-radius:1px;display:flex;align-items:center;justify-content:center;margin-top:1.75rem;font-size:.8rem;color:var(--muted)}
+
+/* FOOTER */
+footer{background:var(--ink);padding:5rem 3rem 2.5rem;color:rgba(255,255,255,.5)}
+.foot-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.5fr;gap:3rem;max-width:1280px;margin:0 auto 3rem}
+.foot-brand p{font-size:.8rem;line-height:1.75;margin-top:.9rem;color:rgba(255,255,255,.4)}
+.foot-logo-img{height:32px;width:auto;filter:brightness(0) invert(1);opacity:.65;margin-bottom:.25rem}
+.foot-col h4{font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2);margin-bottom:1rem}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.foot-col ul li a{font-size:.8rem;color:rgba(255,255,255,.42);transition:color .2s}
+.foot-col ul li a:hover{color:rgba(255,255,255,.78)}
+.foot-news p{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:.75rem}
+.ns-wrap{display:flex;border:1px solid rgba(255,255,255,.1)}
+.ns-wrap input{flex:1;padding:.65rem .85rem;background:transparent;border:none;color:rgba(255,255,255,.7);font-family:var(--sans);font-size:.8rem;outline:none}
+.ns-wrap input::placeholder{color:rgba(255,255,255,.22)}
+.ns-wrap button{padding:.65rem 1rem;background:var(--gold2);border:none;color:var(--forest);font-family:var(--sans);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:background .2s}
+.ns-wrap button:hover{background:var(--gold)}
+.foot-bottom{max-width:1280px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.foot-bottom p{font-size:.72rem;color:rgba(255,255,255,.25)}
+.foot-links{display:flex;gap:1.5rem}
+.foot-links a{font-size:.72rem;color:rgba(255,255,255,.25);transition:color .2s}
+.foot-links a:hover{color:rgba(255,255,255,.6)}
+
+/* FLOATING */
+.fabs{position:fixed;right:1.75rem;bottom:1.75rem;z-index:100;display:flex;flex-direction:column;gap:.6rem;align-items:flex-end}
+.fab{width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:transform .2s;flex-shrink:0}
+.fab:hover{transform:scale(1.08)}
+.fab-dark{background:var(--cream);border:1px solid var(--border)}
+.fab-chat{background:var(--gold2)}
+.chat-box{
+  position:fixed;right:1.75rem;bottom:5.75rem;z-index:99;
+  width:272px;background:var(--white);border:1px solid var(--border);
+  box-shadow:0 8px 40px rgba(0,0,0,.1);display:none;
+}
+.chat-box.open{display:block}
+.cb-head{background:var(--forest);padding:.85rem 1.1rem;display:flex;align-items:center;justify-content:space-between}
+.cb-title{font-size:.8rem;font-weight:500;color:var(--cream)}
+.cb-x{background:none;border:none;color:rgba(255,255,255,.4);cursor:pointer;font-size:1rem}
+.cb-body{padding:1rem}
+.cb-msg{background:var(--paper);padding:.7rem .85rem;font-size:.8rem;color:var(--ink2);line-height:1.6;margin-bottom:.75rem;border-radius:1px}
+.cb-inp{display:flex;border:1px solid var(--border)}
+.cb-inp input{flex:1;padding:.55rem .75rem;border:none;font-family:var(--sans);font-size:.8rem;background:var(--white);color:var(--ink);outline:none}
+.cb-inp button{padding:.55rem .85rem;background:var(--forest);border:none;color:var(--cream);font-family:var(--sans);font-size:.68rem;cursor:pointer}
+
+/* TOAST */
+#toast{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(60px);
+  background:var(--ink);color:rgba(255,255,255,.85);padding:.7rem 1.5rem;
+  font-size:.8rem;border-left:3px solid var(--gold2);
+  opacity:0;z-index:9999;pointer-events:none;white-space:nowrap;
+  transition:transform .3s,opacity .3s;
+}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* REVEAL */
+.r{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.r.in{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  #hero{grid-template-columns:1fr}
+  .hero-r{display:none}
+  .about-grid,.giving-grid,.cont-layout{grid-template-columns:1fr}
+  .faith-box{position:static}
+  .ev-layout{grid-template-columns:1fr}
+  .cal-widget{position:static}
+  .blog-grid{grid-template-columns:1fr}
+  .blog-feat{border-right:none;border-bottom:1px solid var(--border)}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .gal-cell.wide{grid-column:span 1}
+}
+@media(max-width:768px){
+  .section{padding:5rem 1.5rem}
+  #nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-l{padding:7rem 1.75rem 4rem}
+  .pastors-grid,.testi-grid,.connect-grid,.min-grid{grid-template-columns:1fr}
+  .pastor,.testi-item,.connect-p,.min-card{border-right:none!important;border-bottom:1px solid var(--border)!important}
+  .pastor:last-child,.testi-item:last-child,.connect-p:last-child,.min-card:last-child{border-bottom:none!important}
+  .pillars{grid-template-columns:1fr}
+  .pillar{border-right:none!important}
+  .sermons-head,.min-head{grid-template-columns:1fr;gap:1.5rem}
+  .form-2{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr;gap:1.75rem}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
+  .gal-cell.tall{grid-row:span 1}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo"><img src="data:image/jpeg;base64,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8888888888888888888888888888888888888888888+88888888888888884wQYU088888888888888888888888888888+888888888881ww81lwZg5Mgd8590ww8h0888888888888888888+88888888888JUdpUktkZRlct9h84Q10p8888888888888888888+88888888888pUsMpsAhod1818t89VMUp8888888888888888888+88888888888pUoA4skQlxMg88p8oU9Up8888888888888888888+88888888888Ylsd5NgsRZUY88Z9VcRcE8888888888888888888+888888888888p84g80Q8408c88Z8A8oo8888888888888888888+888888888888g88l80l810sR8pB8c0t88888888888888888888+888888888888888888888888888888888888888888888888888+888888888888888888888888888888888888888888888888888+/8QAFBEBAAAAAAAAAAAAAAAAAAAAkP/aAAgBAgEBPwAcP//EACURAAICAQUAAgIDAQAAAAAAAAECABEDEBIhMTJAQVBgEyJRYf/aAAgBAwEBPwD96yZvpYFag4MXLfY/Fs4XuboHB40JAFmbjkNDqMjIP6mNjK8zHW3iFARUCunMDvcRww40bIFNGA3GcL3FYMLGjMFjvtFxG3C/n5+hE8iZEsX9zE+4QoDy0BUdQkDmBlPAm0KbEBB6liUphxg8wbh3M3oQTP5mLwIiFT3MnsTN5mHwPn5+hE8iGYPRl73r6jCxUxNdqYQcbXL3dRgQtLEIAr7mS1IYQGxemb0ICf8AJmJ2zGLSpg9GZPczeZh8D5+foRPIjmhcwL9zFw/OmH2TMi7hUxNtO0zK21ZiFLM/1E8jTN6EEzeZi8CYPRmT3M3mYfA+flUtwItgVUZS3fUArgRsfO5e41kUIq7BxFuuZkxkmxCpZaPcTeooiZEZuotgUdMiMxsQdTKpYUIgIWpjRlPMdGLWJkUstCYwVWj+AdtogN6KxOjNUUk96bjdDRztFw5Ov+6O1DiKxNg6A8kaMaFxWv8AAspLRAQKOm0k9aMCRxEUjvQqd11o4sVP4+dHBIiKRzoQwYka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" alt="Doxa Hill Assembly"></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#ministries">Ministries</a></li>
+    <li><a href="#sermons">Sermons</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#giving" class="nav-cta">Give</a></li>
+  </ul>
+  <button class="hamburger" onclick="openDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- DRAWER -->
+<div class="drawer" id="drawer">
+  <button class="drawer-x" onclick="closeDrawer()">✕</button>
+  <a href="#about" onclick="closeDrawer()">About</a>
+  <a href="#ministries" onclick="closeDrawer()">Ministries</a>
+  <a href="#sermons" onclick="closeDrawer()">Sermons</a>
+  <a href="#events" onclick="closeDrawer()">Events</a>
+  <a href="#giving" onclick="closeDrawer()">Give</a>
+  <a href="#connect" onclick="closeDrawer()">Prayer</a>
+  <a href="#contact" onclick="closeDrawer()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-l">
+    <div class="hero-mountain">
+      <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,320 L0,200 L80,80 L140,140 L220,30 L300,120 L360,55 L430,150 L500,40 L560,130 L600,80 L600,320Z" fill="#c9a843"/>
+        <path d="M0,320 L0,240 L60,170 L130,210 L200,120 L270,190 L340,140 L410,200 L480,110 L540,185 L600,150 L600,320Z" fill="#c9a843" opacity=".5"/>
+      </svg>
+    </div>
+    <div class="hero-eyebrow">Raising Kingdom Ambassadors</div>
+    <h1 class="hero-h1">Doxa Hill<span>Assembly</span></h1>
+    <p class="hero-sub">Accra, Ghana &nbsp;·&nbsp; Est. 2018</p>
+    <div class="hero-btns">
+      <a href="#about" class="btn-g">Join Us</a>
+      <a href="#sermons" class="btn-o">Watch Live</a>
+      <a href="#giving" class="btn-o">Give</a>
+    </div>
+  </div>
+  <div class="hero-r">
+    <img class="hero-r-logo" src="data:image/jpeg;base64,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8888888888888888888888888888888888888888888+88888888888888884wQYU088888888888888888888888888888+888888888881ww81lwZg5Mgd8590ww8h0888888888888888888+88888888888JUdpUktkZRlct9h84Q10p8888888888888888888+88888888888pUsMpsAhod1818t89VMUp8888888888888888888+88888888888pUoA4skQlxMg88p8oU9Up8888888888888888888+88888888888Ylsd5NgsRZUY88Z9VcRcE8888888888888888888+888888888888p84g80Q8408c88Z8A8oo8888888888888888888+888888888888g88l80l810sR8pB8c0t88888888888888888888+888888888888888888888888888888888888888888888888888+888888888888888888888888888888888888888888888888888+/8QAFBEBAAAAAAAAAAAAAAAAAAAAkP/aAAgBAgEBPwAcP//EACURAAICAQUAAgIDAQAAAAAAAAECABEDEBIhMTJAQVBgEyJRYf/aAAgBAwEBPwD96yZvpYFag4MXLfY/Fs4XuboHB40JAFmbjkNDqMjIP6mNjK8zHW3iFARUCunMDvcRww40bIFNGA3GcL3FYMLGjMFjvtFxG3C/n5+hE8iZEsX9zE+4QoDy0BUdQkDmBlPAm0KbEBB6liUphxg8wbh3M3oQTP5mLwIiFT3MnsTN5mHwPn5+hE8iGYPRl73r6jCxUxNdqYQcbXL3dRgQtLEIAr7mS1IYQGxemb0ICf8AJmJ2zGLSpg9GZPczeZh8D5+foRPIjmhcwL9zFw/OmH2TMi7hUxNtO0zK21ZiFLM/1E8jTN6EEzeZi8CYPRmT3M3mYfA+flUtwItgVUZS3fUArgRsfO5e41kUIq7BxFuuZkxkmxCpZaPcTeooiZEZuotgUdMiMxsQdTKpYUIgIWpjRlPMdGLWJkUstCYwVWj+AdtogN6KxOjNUUk96bjdDRztFw5Ov+6O1DiKxNg6A8kaMaFxWv8AAspLRAQKOm0k9aMCRxEUjvQqd11o4sVP4+dHBIiKRzoQwYka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" alt="">
+    <svg class="hero-r-mountain" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,300 L0,170 L90,55 L160,120 L250,15 L340,110 L400,45 L470,135 L550,25 L640,140 L700,85 L700,300Z" fill="#c9a843"/>
+    </svg>
+    <div class="hero-r-verse">
+      <p>"You are a chosen generation, a royal priesthood, a holy nation — His own special people."</p>
+      <cite>1 Peter 2:9</cite>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-label">Upcoming</div>
+  <div class="ticker-items">
+    <div class="ticker-item"><div class="ti-day">4</div><div><div class="ti-name">Sunday Worship Service</div><div class="ti-time">May · 8:00 AM & 10:30 AM</div></div></div>
+    <div class="ticker-item"><div class="ti-day">7</div><div><div class="ti-name">Midweek Bible Study</div><div class="ti-time">May · 6:30 PM</div></div></div>
+    <div class="ticker-item"><div class="ti-day">10</div><div><div class="ti-name">Youth Night of Worship</div><div class="ti-time">May · 6:00 PM</div></div></div>
+    <div class="ticker-item"><div class="ti-day">24</div><div><div class="ti-name">Women's Conference</div><div class="ti-time">May · 9:00 AM – 5:00 PM</div></div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="wrap">
+    <div class="about-grid r">
+      <div class="about-copy">
+        <div class="label">About Us</div>
+        <h2 class="h2" style="margin-bottom:1.75rem">A church where every<em> life finds its calling</em></h2>
+        <p>Doxa Hill Assembly is a Spirit-filled community of believers in Accra, Ghana — founded on the deep conviction that every person carries a God-given purpose and a divine destiny waiting to be unlocked.</p>
+        <p>Our name — Doxa, meaning <em>glory</em> — defines everything we do. From worship to outreach, from counselling to community, we exist to bring glory to God in all things, and to raise Kingdom ambassadors who carry that same mandate into their families, workplaces, and nations.</p>
+        <p>Since 2018, we have been a family marked by authenticity, love, and a relentless hunger for God's presence. Whether you are discovering faith for the first time or deepening a walk of many years — you belong here.</p>
+        <div class="pillars">
+          <div class="pillar"><span class="pillar-tag">Mission</span><div class="pillar-t">Make disciples who make disciples</div><p class="pillar-d">Transforming communities through the power of the Gospel of Christ.</p></div>
+          <div class="pillar"><span class="pillar-tag">Vision</span><div class="pillar-t">A generation of Kingdom Ambassadors</div><p class="pillar-d">Impacting every sphere — family, business, arts, and government.</p></div>
+          <div class="pillar"><span class="pillar-tag">Value</span><div class="pillar-t">Authentic worship</div><p class="pillar-d">Cultivating genuine encounters with God in spirit and in truth.</p></div>
+          <div class="pillar"><span class="pillar-tag">Value</span><div class="pillar-t">Community & service</div><p class="pillar-d">Loving our neighbours as ourselves — bearing each other's burdens.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="faith-box">
+          <h3>Statement of Faith</h3>
+          <ul class="faith-list">
+            <li>We believe in the Holy Trinity — Father, Son, and Holy Spirit</li>
+            <li>The Bible is the inspired, infallible Word of God</li>
+            <li>Salvation comes by grace alone, through faith in Jesus Christ</li>
+            <li>We believe in water baptism and the baptism of the Holy Spirit</li>
+            <li>The gifts of the Spirit are active and available for believers today</li>
+            <li>We believe in the bodily resurrection and the Second Coming of Christ</li>
+          </ul>
+          <div class="stats-row">
+            <div><div class="stat-n">2018</div><div class="stat-l">Founded</div></div>
+            <div><div class="stat-n">500+</div><div class="stat-l">Members</div></div>
+            <div><div class="stat-n">12+</div><div class="stat-l">Ministries</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PASTORS -->
+<section id="pastors" class="section" style="background:var(--paper)">
+  <div class="wrap r">
+    <div class="label">Leadership</div>
+    <h2 class="h2" style="margin-bottom:0">Meet our <em>pastors</em></h2>
+    <div class="pastors-grid">
+      <div class="pastor"><div class="pastor-av">EK</div><div class="pastor-n">Rev. Emmanuel Kweku</div><div class="pastor-r">Senior Pastor & Founder</div><p class="pastor-bio">A passionate preacher with over 15 years in ministry. Rev. Kweku carries a burning heart for souls and a vision to raise godly leaders across Africa and the nations. He is known for his depth in the Word, genuine accessibility, and extraordinary love for people.</p></div>
+      <div class="pastor"><div class="pastor-av">AK</div><div class="pastor-n">Pastor Abena Kweku</div><div class="pastor-r">Co-Pastor · Women's Ministry</div><p class="pastor-bio">A woman of grace and uncommon strength. Pastor Abena leads with compassion and precision, championing women's empowerment and family discipleship. She believes every woman holds a royal identity waiting to be fully unveiled.</p></div>
+      <div class="pastor"><div class="pastor-av">KM</div><div class="pastor-n">Pastor Kofi Mensah</div><div class="pastor-r">Associate Pastor · Youth Lead</div><p class="pastor-bio">Dynamic, relatable, and Spirit-led — Pastor Kofi is the heartbeat of Doxa Hill's youth movement. He equips the next generation to live boldly, think critically, and serve selflessly in a world that desperately needs Christ.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MINISTRIES -->
+<section id="ministries" class="section">
+  <div class="wrap">
+    <div class="min-head r">
+      <div><div class="label">Ministries</div><h2 class="h2">Find where <em>you fit</em></h2></div>
+      <p class="body-text">Every ministry is a family. Find where you belong, grow, and make a difference that outlasts a lifetime.</p>
+    </div>
+    <div class="min-grid r">
+      <div class="min-card"><div class="min-n">01</div><div class="min-t">Children's Ministry</div><p class="min-d">A safe, joyful, Spirit-filled space where children encounter Jesus through age-appropriate worship, Bible stories, and creative activities.</p></div>
+      <div class="min-card"><div class="min-n">02</div><div class="min-t">Youth Ministry</div><p class="min-d">Equipping teenagers and young adults to navigate life with wisdom and boldness. The youth are not the church of tomorrow — they are the church of today.</p></div>
+      <div class="min-card"><div class="min-n">03</div><div class="min-t">Women's Ministry</div><p class="min-d">Celebrating and empowering women in every season. Through fellowship, mentorship, and the Word, every woman discovers her royal identity in Christ.</p></div>
+      <div class="min-card"><div class="min-n">04</div><div class="min-t">Men's Ministry</div><p class="min-d">Building strong men of God — husbands, fathers, and leaders who walk in integrity, accountability, and genuine Kingdom purpose. Iron sharpens iron.</p></div>
+      <div class="min-card"><div class="min-n">05</div><div class="min-t">Worship & Choir</div><p class="min-d">Leading the congregation into the presence of God through music and praise. Our team is passionate, diverse, and deeply committed to anointed worship.</p></div>
+      <div class="min-card"><div class="min-n">06</div><div class="min-t">Outreach & Evangelism</div><p class="min-d">Taking the love of Christ into schools, communities, hospitals, and nations. We are compelled by love to go and tell the world of His goodness.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERMONS -->
+<section id="sermons" class="section" style="background:var(--paper)">
+  <div class="wrap">
+    <div class="sermons-head r">
+      <div><div class="label">Media</div><h2 class="h2">Sermons &amp; <em>messages</em></h2></div>
+      <div style="display:flex;flex-direction:column;gap:.75rem;align-items:flex-start">
+        <p class="body-text" style="max-width:320px">Be fed. Stream, download, or share messages from our library — or join us live every Sunday morning.</p>
+        <div class="live-badge" onclick="toast('Live stream begins Sunday at 8:00 AM GMT')"><div class="live-dot"></div>Watch Live — Sunday 8:00 AM</div>
+      </div>
+    </div>
+    <div class="s-tabs r">
+      <button class="s-tab on" onclick="filterS(this,'all')">All</button>
+      <button class="s-tab" onclick="filterS(this,'kingdom')">Kingdom Life</button>
+      <button class="s-tab" onclick="filterS(this,'faith')">Faith Builders</button>
+      <button class="s-tab" onclick="filterS(this,'family')">Family</button>
+      <button class="s-tab" onclick="filterS(this,'prayer')">Prayer</button>
+    </div>
+    <div class="s-list r" id="slist">
+      <div class="s-row" data-s="kingdom"><div class="s-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div><div class="s-series">Kingdom Life</div><div class="s-title">You Are a Royal Priesthood</div><div class="s-meta">Apr 20, 2026 · Rev. Emmanuel Kweku</div></div><div class="s-dur">42 min</div></div>
+      <div class="s-row" data-s="faith"><div class="s-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div><div class="s-series">Faith Builders</div><div class="s-title">When God Says Wait</div><div class="s-meta">Apr 13, 2026 · Pastor Kofi Mensah</div></div><div class="s-dur">38 min</div></div>
+      <div class="s-row" data-s="family"><div class="s-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div><div class="s-series">Family</div><div class="s-title">The Praying Wife & Mother</div><div class="s-meta">Apr 6, 2026 · Pastor Abena Kweku</div></div><div class="s-dur">51 min</div></div>
+      <div class="s-row" data-s="prayer"><div class="s-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div><div class="s-series">Prayer</div><div class="s-title">Fasting That Breaks Yokes</div><div class="s-meta">Mar 30, 2026 · Rev. Emmanuel Kweku</div></div><div class="s-dur">47 min</div></div>
+      <div class="s-row" data-s="kingdom"><div class="s-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div><div class="s-series">Kingdom Life</div><div class="s-title">Ruling with Grace</div><div class="s-meta">Mar 23, 2026 · Rev. Emmanuel Kweku</div></div><div class="s-dur">44 min</div></div>
+      <div class="s-row" data-s="faith"><div class="s-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div><div class="s-series">Faith Builders</div><div class="s-title">Mountain-Moving Faith</div><div class="s-meta">Mar 16, 2026 · Pastor Kofi Mensah</div></div><div class="s-dur">35 min</div></div>
+    </div>
+    <div style="padding:2rem 0;text-align:center">
+      <a href="#" style="font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:2px">View full sermon library</a>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="section" style="background:var(--white)">
+  <div class="wrap">
+    <div class="label r">Events</div>
+    <h2 class="h2 r" style="margin-bottom:0">What's <em>coming up</em></h2>
+    <div class="ev-layout">
+      <div class="ev-list r">
+        <div class="ev-row"><div class="ev-box"><div class="ev-day">4</div><div class="ev-mo">May</div></div><div><div class="ev-tag">Worship</div><div class="ev-nm">Sunday Service</div><div class="ev-wh">8:00 AM & 10:30 AM · Main Auditorium</div></div><a href="#" class="ev-btn">RSVP</a></div>
+        <div class="ev-row"><div class="ev-box"><div class="ev-day">7</div><div class="ev-mo">May</div></div><div><div class="ev-tag">Study</div><div class="ev-nm">Midweek Bible Study</div><div class="ev-wh">6:30 PM · Fellowship Hall</div></div><a href="#" class="ev-btn">Join</a></div>
+        <div class="ev-row"><div class="ev-box"><div class="ev-day">10</div><div class="ev-mo">May</div></div><div><div class="ev-tag">Youth</div><div class="ev-nm">Youth Night of Worship</div><div class="ev-wh">6:00 PM · Youth Centre</div></div><a href="#" class="ev-btn">RSVP</a></div>
+        <div class="ev-row"><div class="ev-box"><div class="ev-day">16</div><div class="ev-mo">May</div></div><div><div class="ev-tag">Outreach</div><div class="ev-nm">Community Outreach Day</div><div class="ev-wh">7:00 AM · Multiple Locations</div></div><a href="#" class="ev-btn">Sign Up</a></div>
+        <div class="ev-row"><div class="ev-box"><div class="ev-day">24</div><div class="ev-mo">May</div></div><div><div class="ev-tag">Conference</div><div class="ev-nm">Women's Empowerment Conference</div><div class="ev-wh">9:00 AM – 5:00 PM · Main Auditorium</div></div><a href="#" class="ev-btn">Register</a></div>
+      </div>
+      <div class="cal-widget r" style="animation-delay:.1s">
+        <div class="cal-top"><div class="cal-mo">May 2026</div><div class="cal-arrows"><button>‹</button><button>›</button></div></div>
+        <div class="cal-g">
+          <div class="cal-wd">Su</div><div class="cal-wd">Mo</div><div class="cal-wd">Tu</div><div class="cal-wd">We</div><div class="cal-wd">Th</div><div class="cal-wd">Fr</div><div class="cal-wd">Sa</div>
+          <div class="cal-d dim">27</div><div class="cal-d dim">28</div><div class="cal-d dim">29</div><div class="cal-d dim">30</div><div class="cal-d dim">1</div><div class="cal-d dim">2</div><div class="cal-d dim">3</div>
+          <div class="cal-d ev">4</div><div class="cal-d">5</div><div class="cal-d">6</div><div class="cal-d ev">7</div><div class="cal-d">8</div><div class="cal-d">9</div><div class="cal-d ev">10</div>
+          <div class="cal-d">11</div><div class="cal-d">12</div><div class="cal-d">13</div><div class="cal-d">14</div><div class="cal-d today">15</div><div class="cal-d ev">16</div><div class="cal-d">17</div>
+          <div class="cal-d">18</div><div class="cal-d">19</div><div class="cal-d">20</div><div class="cal-d">21</div><div class="cal-d">22</div><div class="cal-d">23</div><div class="cal-d ev">24</div>
+          <div class="cal-d">25</div><div class="cal-d">26</div><div class="cal-d">27</div><div class="cal-d">28</div><div class="cal-d">29</div><div class="cal-d">30</div><div class="cal-d">31</div>
+        </div>
+        <div style="margin-top:1rem;padding-top:.85rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:.5rem"><div style="width:5px;height:5px;border-radius:50%;background:var(--gold)"></div><span style="font-size:.68rem;color:var(--muted)">Event day</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIVING -->
+<section id="giving" class="section">
+  <div class="wrap">
+    <div class="g-label r">Generosity</div>
+    <h2 class="g-h2 r">Give to the <em>Kingdom</em></h2>
+    <div class="giving-grid">
+      <div class="r">
+        <div class="g-verse">"Each of you should give what you have decided in your heart — not reluctantly or under compulsion, for God loves a cheerful giver."</div>
+        <div class="g-ref">2 Corinthians 9:7</div>
+        <p class="g-p">Your giving is an act of worship — a seed for eternal harvest. Every gift, whether tithe, offering, or missions support, goes directly toward advancing God's Kingdom in Accra and beyond.</p>
+        <div class="methods">
+          <button class="method on" onclick="selM(this)"><div class="method-icon">📱</div><div class="method-nm">Mobile Money</div><div class="method-hint">MTN · Vodafone · AirtelTigo</div></button>
+          <button class="method" onclick="selM(this)"><div class="method-icon">💳</div><div class="method-nm">Card Payment</div><div class="method-hint">Visa · Mastercard</div></button>
+          <button class="method" onclick="selM(this)"><div class="method-icon">🏦</div><div class="method-nm">Bank Transfer</div><div class="method-hint">Direct deposit</div></button>
+          <button class="method" onclick="selM(this)"><div class="method-icon">🌐</div><div class="method-nm">Online Gateway</div><div class="method-hint">Paystack · Flutterwave</div></button>
+        </div>
+      </div>
+      <div class="g-form r" style="animation-delay:.12s">
+        <h3>Make a Gift</h3>
+        <span class="lbl" style="margin-top:0">Amount (GHS)</span>
+        <div class="amt-row"><button class="amt-btn" onclick="selA(this)">50</button><button class="amt-btn on" onclick="selA(this)">100</button><button class="amt-btn" onclick="selA(this)">200</button><button class="amt-btn" onclick="selA(this)">500</button></div>
+        <input class="inp" type="number" placeholder="Or enter custom amount…" style="margin-bottom:.2rem">
+        <span class="lbl">Giving Type</span><select class="sel"><option>Tithe</option><option>Offering</option><option>Missions</option><option>Building Fund</option><option>Outreach</option><option>Other</option></select>
+        <span class="lbl">Full Name</span><input class="inp" type="text" placeholder="Your name">
+        <span class="lbl">Phone / Email</span><input class="inp" type="text" placeholder="Contact details">
+        <button class="btn-g" style="width:100%;text-align:center;display:block;margin-top:1.25rem" onclick="toast('Thank you — your gift has been received. God bless you!')">Give Now</button>
+        <p style="font-size:.68rem;color:var(--muted);text-align:center;margin-top:.65rem">Secure & encrypted. Your generosity is received with gratitude.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="section" style="background:var(--white)">
+  <div class="wrap">
+    <div class="label r">Blog & Devotionals</div>
+    <h2 class="h2 r" style="margin-bottom:0">Words of <em>life & hope</em></h2>
+    <div class="blog-grid r">
+      <div class="blog-feat">
+        <div class="blog-feat-img">
+          <svg viewBox="0 0 500 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,240 L0,140 L70,50 L130,100 L200,15 L280,95 L340,40 L420,120 L500,60 L500,240Z" fill="#c9a843"/></svg>
+          <span>Featured</span>
+        </div>
+        <div class="blog-feat-body">
+          <div class="blog-tag">Devotional</div>
+          <div class="blog-t">Finding Peace in the Storm: A Morning Devotion</div>
+          <p class="blog-exc">When the waters rage and the winds howl, there is an anchor that holds firm — the peace of God that surpasses all understanding. Here is how to return to that stillness each day.</p>
+          <div class="blog-by">Rev. Emmanuel Kweku &nbsp;·&nbsp; Apr 22, 2026</div>
+        </div>
+      </div>
+      <div class="blog-side-col">
+        <div class="blog-si"><div class="blog-tag">Sermon Notes</div><div class="blog-si-t">Kingdom Identity: Who You Really Are in Christ</div><div class="blog-si-m">Pastor Kofi Mensah · Apr 20</div></div>
+        <div class="blog-si"><div class="blog-tag">Testimony</div><div class="blog-si-t">"God Turned My Mourning into Dancing"</div><div class="blog-si-m">Efua Asante · Apr 15</div></div>
+        <div class="blog-si"><div class="blog-tag">Devotional</div><div class="blog-si-t">The Discipline of Gratitude</div><div class="blog-si-m">Pastor Abena Kweku · Apr 10</div></div>
+        <div class="blog-si"><div class="blog-tag">News</div><div class="blog-si-t">Doxa Hill Reaches 500 Members — A Testimony</div><div class="blog-si-m">Church Office · Apr 1</div></div>
+      </div>
+      <div class="blog-side-col">
+        <div class="blog-si"><div class="blog-tag">Prayer</div><div class="blog-si-t">21 Days of Prayer: Why It Changes Everything</div><div class="blog-si-m">Rev. Emmanuel Kweku · Mar 28</div></div>
+        <div class="blog-si"><div class="blog-tag">Family</div><div class="blog-si-t">Raising Children Who Love God</div><div class="blog-si-m">Pastor Abena Kweku · Mar 21</div></div>
+        <div class="blog-si"><div class="blog-tag">Faith</div><div class="blog-si-t">When Answered Prayer Looks Different from What You Asked</div><div class="blog-si-m">Pastor Kofi Mensah · Mar 14</div></div>
+        <div class="blog-si"><div class="blog-tag">Outreach</div><div class="blog-si-t">What Our Last Community Visit Taught Us</div><div class="blog-si-m">Outreach Team · Mar 8</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section" style="background:var(--paper)">
+  <div class="wrap">
+    <div class="label r">Gallery</div>
+    <h2 class="h2 r" style="margin-bottom:1.25rem">Moments of <em>grace</em></h2>
+    <div class="gal-tabs r">
+      <button class="gal-tab on">All</button>
+      <button class="gal-tab">Worship</button>
+      <button class="gal-tab">Outreach</button>
+      <button class="gal-tab">Events</button>
+      <button class="gal-tab">Youth</button>
+    </div>
+    <div class="gal-grid r">
+      <div class="gal-cell tall"><div class="gal-overlay"></div><div class="gal-lbl">Sunday Worship · March 2026</div></div>
+      <div class="gal-cell"><div class="gal-overlay"></div><div class="gal-lbl">Choir rehearsal</div></div>
+      <div class="gal-cell"><div class="gal-overlay"></div><div class="gal-lbl">Community outreach</div></div>
+      <div class="gal-cell"><div class="gal-overlay"></div><div class="gal-lbl">Children's service</div></div>
+      <div class="gal-cell wide"><div class="gal-overlay"></div><div class="gal-lbl">Women's Conference 2026</div></div>
+      <div class="gal-cell"><div class="gal-overlay"></div><div class="gal-lbl">Youth night of worship</div></div>
+      <div class="gal-cell"><div class="gal-overlay"></div><div class="gal-lbl">Bible study fellowship</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section" style="background:var(--white)">
+  <div class="wrap">
+    <div class="label r">Testimonies</div>
+    <h2 class="h2 r" style="margin-bottom:0">What God has <em>done</em></h2>
+    <div class="testi-grid r">
+      <div class="testi-item"><p class="testi-q">I walked into Doxa Hill broken and defeated. Today I stand as a living testimony of God's transforming power. This church didn't just preach at me — they walked with me through every valley.</p><div style="display:flex;align-items:center;gap:.65rem"><div class="testi-av">KO</div><div><div class="testi-nm">Kwame Owusu</div><div class="testi-rl">Member since 2021</div></div></div></div>
+      <div class="testi-item"><p class="testi-q">The women's ministry changed my life completely. I found sisterhood, purpose, and the boldness to pursue my God-given calling. I am forever grateful for this extraordinary family.</p><div style="display:flex;align-items:center;gap:.65rem"><div class="testi-av">AA</div><div><div class="testi-nm">Akosua Agyemang</div><div class="testi-rl">Women's Ministry Leader</div></div></div></div>
+      <div class="testi-item"><p class="testi-q">As a young man who felt completely lost, Doxa Hill gave me direction, mentors, and a genuine community. I now lead worship and mentor others — only God could have written this story.</p><div style="display:flex;align-items:center;gap:.65rem"><div class="testi-av">EY</div><div><div class="testi-nm">Elijah Yeboah</div><div class="testi-rl">Youth Worship Leader</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRAYER + MEMBERSHIP -->
+<section id="connect" class="section" style="background:var(--paper)">
+  <div class="wrap">
+    <div class="label r">Connect</div>
+    <h2 class="h2 r" style="margin-bottom:0">Prayer & <em>membership</em></h2>
+    <div class="connect-grid r">
+      <div class="connect-p">
+        <h3>Submit a prayer request</h3>
+        <p>No request is too small or too heavy. Our prayer team intercedes for every need. You are not alone in this.</p>
+        <span class="lbl" style="margin-top:0">Your name</span><input class="inp" type="text" placeholder="Full name">
+        <span class="lbl">Email</span><input class="inp" type="email" placeholder="your@email.com">
+        <span class="lbl">Your request</span><textarea class="ta" placeholder="Share what is on your heart…"></textarea>
+        <div class="chk-row"><input type="checkbox" id="priv"><label for="priv">Keep private — only the prayer team will see this</label></div>
+        <button class="btn-g" style="margin-top:1.5rem" onclick="toast('Prayer request received — our team is praying for you.')">Send Request</button>
+      </div>
+      <div class="connect-p">
+        <h3>Become a member</h3>
+        <p>Doxa Hill is your family. Take the next step — commit, grow, and belong to something eternal.</p>
+        <span class="lbl" style="margin-top:0">Full name</span><input class="inp" type="text" placeholder="Your full name">
+        <span class="lbl">Phone number</span><input class="inp" type="tel" placeholder="+233 XX XXX XXXX">
+        <span class="lbl">Email</span><input class="inp" type="email" placeholder="your@email.com">
+        <span class="lbl">Are you a new believer?</span><select class="sel"><option>No, I've followed Christ for some time</option><option>Yes, I just gave my life to Christ</option><option>I'm exploring Christianity</option></select>
+        <span class="lbl">How did you find us?</span><select class="sel"><option>A friend or family member</option><option>Social media</option><option>Walk-in</option><option>Search engine</option><option>Other</option></select>
+        <button class="btn-g" style="margin-top:1.5rem" onclick="toast('Welcome to the Doxa Hill family! We will be in touch soon.')">Join the Family</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section" style="background:var(--white)">
+  <div class="wrap">
+    <div class="label r">Contact</div>
+    <h2 class="h2 r" style="margin-bottom:0">We'd love to <em>hear from you</em></h2>
+    <div class="cont-layout">
+      <div class="r">
+        <div class="cont-form">
+          <h3>Send us a message</h3>
+          <div class="form-2">
+            <div><span class="lbl" style="margin-top:0">First name</span><input class="inp" type="text" placeholder="John"></div>
+            <div><span class="lbl" style="margin-top:0">Last name</span><input class="inp" type="text" placeholder="Doe"></div>
+          </div>
+          <span class="lbl">Email</span><input class="inp" type="email" placeholder="john@example.com">
+          <span class="lbl">Subject</span><select class="sel"><option>General enquiry</option><option>Counselling</option><option>Partnership / Media</option><option>Event information</option><option>Other</option></select>
+          <span class="lbl">Message</span><textarea class="ta" placeholder="How can we serve you?"></textarea>
+          <button class="btn-g" style="margin-top:1.25rem" onclick="toast('Message sent — we will respond within 24 hours.')">Send Message</button>
+        </div>
+      </div>
+      <div class="r" style="animation-delay:.1s">
+        <div class="ci-item"><div class="ci-lbl">Address</div><div class="ci-val">Doxa Hill Assembly<br>Accra, Greater Accra Region<br>Ghana, West Africa</div></div>
+        <div class="ci-item"><div class="ci-lbl">Service Times</div><div class="ci-val">Sunday · 8:00 AM & 10:30 AM<br>Wednesday · 6:30 PM<br>Friday · 7:00 PM (Prayer)</div></div>
+        <div class="ci-item"><div class="ci-lbl">Phone</div><div class="ci-val"><a href="tel:+233000000000">+233 XX XXX XXXX</a></div></div>
+        <div class="ci-item"><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:info@doxahillassembly.org">info@doxahillassembly.org</a></div></div>
+        <div class="socials">
+          <a href="#" class="social-tag">Facebook</a>
+          <a href="#" class="social-tag">Instagram</a>
+          <a href="#" class="social-tag">YouTube</a>
+          <a href="#" class="social-tag">WhatsApp</a>
+          <a href="#" class="social-tag">X / Twitter</a>
+        </div>
+        <div class="map-ph">Google Maps · Accra, Ghana</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <img class="foot-logo-img" src="data:image/jpeg;base64,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8888888888888888888888888888888888888888888+88888888888888884wQYU088888888888888888888888888888+888888888881ww81lwZg5Mgd8590ww8h0888888888888888888+88888888888JUdpUktkZRlct9h84Q10p8888888888888888888+88888888888pUsMpsAhod1818t89VMUp8888888888888888888+88888888888pUoA4skQlxMg88p8oU9Up8888888888888888888+88888888888Ylsd5NgsRZUY88Z9VcRcE8888888888888888888+888888888888p84g80Q8408c88Z8A8oo8888888888888888888+888888888888g88l80l810sR8pB8c0t88888888888888888888+888888888888888888888888888888888888888888888888888+888888888888888888888888888888888888888888888888888+/8QAFBEBAAAAAAAAAAAAAAAAAAAAkP/aAAgBAgEBPwAcP//EACURAAICAQUAAgIDAQAAAAAAAAECABEDEBIhMTJAQVBgEyJRYf/aAAgBAwEBPwD96yZvpYFag4MXLfY/Fs4XuboHB40JAFmbjkNDqMjIP6mNjK8zHW3iFARUCunMDvcRww40bIFNGA3GcL3FYMLGjMFjvtFxG3C/n5+hE8iZEsX9zE+4QoDy0BUdQkDmBlPAm0KbEBB6liUphxg8wbh3M3oQTP5mLwIiFT3MnsTN5mHwPn5+hE8iGYPRl73r6jCxUxNdqYQcbXL3dRgQtLEIAr7mS1IYQGxemb0ICf8AJmJ2zGLSpg9GZPczeZh8D5+foRPIjmhcwL9zFw/OmH2TMi7hUxNtO0zK21ZiFLM/1E8jTN6EEzeZi8CYPRmT3M3mYfA+flUtwItgVUZS3fUArgRsfO5e41kUIq7BxFuuZkxkmxCpZaPcTeooiZEZuotgUdMiMxsQdTKpYUIgIWpjRlPMdGLWJkUstCYwVWj+AdtogN6KxOjNUUk96bjdDRztFw5Ov+6O1DiKxNg6A8kaMaFxWv8AAspLRAQKOm0k9aMCRxEUjvQqd11o4sVP4+dHBIiKRzoQwYka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" alt="Doxa Hill Assembly">
+      <p>A Spirit-filled community where lives are transformed, families are built, and God is glorified in all things. You are welcome here — always.</p>
+    </div>
+    <div class="foot-col"><h4>Explore</h4><ul><li><a href="#about">About Us</a></li><li><a href="#ministries">Ministries</a></li><li><a href="#sermons">Sermons</a></li><li><a href="#events">Events</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#blog">Blog</a></li></ul></div>
+    <div class="foot-col"><h4>Connect</h4><ul><li><a href="#giving">Give Online</a></li><li><a href="#connect">Prayer Request</a></li><li><a href="#connect">Become a Member</a></li><li><a href="#contact">Contact Us</a></li><li><a href="#">Volunteer</a></li><li><a href="#">Partnership</a></li></ul></div>
+    <div class="foot-news foot-col"><h4>Newsletter</h4><p>Weekly devotionals, event updates, and encouragement delivered to your inbox.</p><div class="ns-wrap"><input type="email" placeholder="your@email.com"><button onclick="toast('Subscribed — welcome to the Doxa Hill family!')">Subscribe</button></div><p style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.5rem">No spam. Unsubscribe anytime.</p></div>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2026 Doxa Hill Assembly · Accra, Ghana · All rights reserved</p>
+    <div class="foot-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="fabs">
+  <button class="fab fab-dark" id="dfab" onclick="toggleDark()" title="Dark mode">🌙</button>
+  <button class="fab fab-chat" onclick="toggleChat()" title="Chat">💬</button>
+</div>
+<div class="chat-box" id="chatBox">
+  <div class="cb-head"><div class="cb-title">Doxa Hill — We're here</div><button class="cb-x" onclick="toggleChat()">✕</button></div>
+  <div class="cb-body">
+    <div class="cb-msg">Hi! Welcome to Doxa Hill Assembly. Ask us about service times, ministries, prayer support, or anything at all — we're glad you're here.</div>
+    <div class="cb-inp"><input type="text" id="cbI" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendC()"><button onclick="sendC()">Send</button></div>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+  // Nav
+  const nav=document.getElementById('nav');
+  const stick=()=>nav.classList.toggle('scrolled',scrollY>50);
+  window.addEventListener('scroll',stick);stick();
+
+  // Drawer
+  function openDrawer(){document.getElementById('drawer').classList.add('open')}
+  function closeDrawer(){document.getElementById('drawer').classList.remove('open')}
+
+  // Dark mode
+  let dark=false;
+  function toggleDark(){
+    dark=!dark;
+    document.documentElement.style.setProperty('--cream',dark?'#181510':'#fdfbf6');
+    document.documentElement.style.setProperty('--white',dark?'#1e1b14':'#ffffff');
+    document.documentElement.style.setProperty('--paper',dark?'#141210':'#f9f6ef');
+    document.documentElement.style.setProperty('--ink',dark?'#f0ece3':'#18160f');
+    document.documentElement.style.setProperty('--ink2',dark?'#c8c2b0':'#3a3528');
+    document.documentElement.style.setProperty('--muted',dark?'#887e6a':'#78725e');
+    document.documentElement.style.setProperty('--border',dark?'#2e2a22':'#ddd8cc');
+    document.getElementById('dfab').textContent=dark?'☀️':'🌙';
+  }
+
+  // Sermon filter
+  function filterS(btn,cat){
+    document.querySelectorAll('.s-tab').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    document.querySelectorAll('.s-row').forEach(r=>{
+      r.style.display=(cat==='all'||r.dataset.s===cat)?'':'none';
+    });
+  }
+
+  // Give helpers
+  function selM(el){document.querySelectorAll('.method').forEach(m=>m.classList.remove('on'));el.classList.add('on')}
+  function selA(btn){document.querySelectorAll('.amt-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
+
+  // Gallery tabs
+  document.querySelectorAll('.gal-tab').forEach(t=>t.addEventListener('click',function(){
+    document.querySelectorAll('.gal-tab').forEach(x=>x.classList.remove('on'));
+    this.classList.add('on');
+  }));
+
+  // Chat
+  function toggleChat(){document.getElementById('chatBox').classList.toggle('open')}
+  function sendC(){
+    const i=document.getElementById('cbI');
+    if(!i.value.trim())return;
+    i.value='';toggleChat();
+    toast('Message sent — a team member will reply shortly.');
+  }
+  document.addEventListener('click',e=>{
+    if(!e.target.closest('.chat-box')&&!e.target.closest('.fab-chat'))
+      document.getElementById('chatBox').classList.remove('open');
+  });
+
+  // Toast
+  function toast(msg){
+    const t=document.getElementById('toast');
+    t.textContent=msg;t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),3500);
+  }
+
+  // Reveal
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+  },{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
